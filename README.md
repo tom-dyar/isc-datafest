@@ -11,7 +11,7 @@ Best served ice cold!
 
 Shortcut:
 ```ObjectScript
-do ##class(bdb.sql.InferSchema).CreateForeignSchema("/opt/irisbuild/data/taxi/", { "verbose":1, "targetSchema":"demo_files" })
+do ##class(bdb.sql.InferSchema).CreateForeignTables("/opt/irisbuild/data/taxi/", { "verbose":1, "targetSchema":"demo_files" })
 ```
 
 ### Working with dbt
