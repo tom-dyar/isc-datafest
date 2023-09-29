@@ -4,14 +4,15 @@ FROM ${IMAGE}
 
 USER root
 
+ENV PIP_TARGET=${ISC_PACKAGE_INSTALLDIR}/mgr/python
+
 WORKDIR /opt/irisbuild
 
 RUN mkdir /opt/irisbuild/data/ && \
   chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /opt/irisbuild && \
-  chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /opt/irisbuild/data 
-#  && \
-#  pip3 install --upgrade pip && \
-#  pip3 install pandas pyarrow fastparquet requests
+  chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /opt/irisbuild/data  && \
+  python3 -m pip install --upgrade pip && \
+  pip install pandas sqlalchemy-iris
 
 USER ${ISC_PACKAGE_MGRUSER}
 

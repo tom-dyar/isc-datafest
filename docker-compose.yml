@@ -1,0 +1,12 @@
+version: '3.6'
+services:
+  iris-datafest:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    command: --check-caps false --ISCAgent false
+    restart: always
+    hostname: iris
+    ports:
+      - 41773:1972
+      - 42773:52773

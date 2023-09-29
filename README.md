@@ -7,6 +7,21 @@ Best served ice cold!
 
 ## Tutorial
 
+### Building the image
+
+```Shell
+docker build . --tag iris-datafest
+docker run -d --name iris-datafest -p 41773:1972 -p 42773:52773 iris-datafest
+```
+
+or 
+
+```Shell
+docker-compose up
+```
+
+To log in to the container, use `docker exec -it <container-name> bash`, or use your favourite SQL tool to connect through port 41773.
+
 ### Creating the Foreign Tables
 
 Shortcut:
@@ -24,7 +39,9 @@ Never heard of [dbt](http://getdbt.com)? It's the T in ELT (and if you haven't h
 This takes very long!
 
 ```SQL
-create model distance predicting (trip_distance) from demo_files.yellow_tripdata_2020_05;
+SET ML CONFIGURATION %H2O;
 
-train model distance;
+CREATE MODEL distance PREDICTING (trip_distance) FROM demo_files.yellow_tripdata_2020_05;
+
+TRAIN MODEL distance;
 ```
